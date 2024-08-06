@@ -1,0 +1,17 @@
+{
+	"name": "tushop_interview",
+	"version": "1.0.0",
+	"description": "tushop interview test",
+	"main": "index.js",
+	"scripts": {
+		"dev": "ts-node src/index.ts"
+	},
+	"author": "Issa Suleiman",
+	"license": "MIT",
+	"devDependencies": {
+		"@types/node": "^20.9.0",
+		"nodemon": "^3.0.1",
+		"ts-node": "^10.9.1",
+		"typescript": "^5.2.2"
+	}
+}
