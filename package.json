@@ -1,17 +1,20 @@
 {
-	"name": "tushop_interview",
+	"name": "tushop_assesment",
 	"version": "1.0.0",
-	"description": "tushop interview test",
+	"description": "tushop backend coding assessment",
 	"main": "index.js",
 	"scripts": {
-		"dev": "ts-node src/index.ts"
+		"dev": "nodemon src/index.ts",
+		"start": "ts-node src/index.ts",
+		"test1": "ts-node src/problem1/tests/test.ts",
+		"test2": "ts-node src/problem2/tests/test.ts"
 	},
 	"author": "Issa Suleiman",
 	"license": "MIT",
 	"devDependencies": {
 		"@types/node": "^20.9.0",
 		"nodemon": "^3.0.1",
-		"ts-node": "^10.9.1",
-		"typescript": "^5.2.2"
+		"ts-node": "^10.9.2",
+		"typescript": "^5.5.4"
 	}
 }
