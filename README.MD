@@ -4,7 +4,7 @@ This repository is my submission for the Tushop assessment.
 
 ## Video Demonstration
 
-1. 'Problem 1' - [![Watch the video](https://www.loom.com/share/16550eee210a4ccba3c0c607322116a2?sid=20681971-0285-4fd2-b768-aa898d86b389)]
+1. 'Problem 1' - [![Watch the video](https://www.loom.com/share/16550eee210a4ccba3c0c607322116a2)]
 
 
 
