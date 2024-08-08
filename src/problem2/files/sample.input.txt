@@ -1,4 +1,4 @@
-Number of employees: 4
+Number of employees: 2
 Goodies and Prices:
 Fitbit Plus: 7980
 IPods: 22349

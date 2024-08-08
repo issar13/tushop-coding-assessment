@@ -1,15 +1,15 @@
 import readline from 'readline';
 import { Job, ValidationResponse } from './interface';
-import { validateJobCount, validateJobDetails, validateProblemNumber } from './validator';
+import { validateEmployeeCount, validateJobCount, validateJobDetails, validateProblemNumber } from './validator';
 
 const promptUser = (query: string): Promise<string> => {
 	return new Promise((resolve) => {
-		const rl = readline.createInterface({
+		const readL = readline.createInterface({
 			input: process.stdin,
 			output: process.stdout,
 		});
-		rl.question(query, (answer) => {
-			rl.close();
+		readL.question(query, (answer) => {
+			readL.close();
 			resolve(answer);
 		});
 	});
@@ -17,7 +17,8 @@ const promptUser = (query: string): Promise<string> => {
 
 const validateInput = async (
 	query: string,
-	validator: (input: string) => ValidationResponse
+	validator: (input: string, goodiesLength?: number) => ValidationResponse,
+	goodiesLength?: number
 ): Promise<string> => {
 	let isValid = false;
 	let input: string;
@@ -25,7 +26,7 @@ const validateInput = async (
 
 	do {
 		input = await promptUser(query);
-		validation = validator(input);
+		validation = validator(input, goodiesLength);
 		if (!validation.isValid) {
 			console.log(validation.message);
 		} else {
@@ -44,6 +45,15 @@ export const getJobNum = async (): Promise<number> => {
 	return parseInt(input);
 };
 
+export const getEmployeeNumber = async (goodiesLength: number): Promise<number> => {
+	const input = await validateInput(
+		'Enter number of employees: ',
+		validateEmployeeCount,
+		goodiesLength
+	);
+	return parseInt(input);
+};
+
 export const chooseProblemNum = async (): Promise<number> => {
 	const input = await validateInput(
 		'Enter problem to Solve (1 or 2): ',
@@ -53,9 +63,8 @@ export const chooseProblemNum = async (): Promise<number> => {
 };
 
 export const getJobData = async (index: number): Promise<Job> => {
-	console.log(`Job ${index}:`);
 	const input = await validateInput(
-		`Enter the job ${index} start time, end time, and profit separated by space (e.g. 0900 1700 500): `,
+		`Enter job ${index} start time, end time, and profit separated by space (e.g. 0900 1700 500): `,
 		validateJobDetails
 	);
 	const [startTime, endTime, profit] = input.split(' ').map(Number);

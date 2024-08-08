@@ -2,18 +2,20 @@ import { getJobData, getJobNum } from '../utils/input';
 import { Job } from '../utils/interface';
 
 const solveProblem1 = async () => {
-	let jobCount: number = await getJobNum();
-	let jobs: Job[] = [];
-	let i = 1;
-	while (i <= jobCount) {
-		const jobDetails = await getJobData(i);
-		jobs = [...jobs, jobDetails];
-		i++;
-	}
-	const earnings = calculateJohnEarnings(jobs);
-	console.log('Tasks: ', earnings[0]);
-	console.log('Earnings: ', earnings[1]);
-	process.exit();
+	try {
+        const totalJobs = await getJobNum();
+        const jobList = [];
+        for (let index = 1; index <= totalJobs; index++) {
+            const jobInfo = await getJobData(index);
+            jobList.push(jobInfo);
+        }
+        const [taskCount, totalEarnings] = calculateJohnEarnings(jobList);
+        console.log('Tasks Left: ', taskCount);
+        console.log('Total Earnings Left: ', totalEarnings);
+    } catch (error) {
+        console.error('Error processing jobs:', error);
+    }
+    process.exit()
 };
 
 

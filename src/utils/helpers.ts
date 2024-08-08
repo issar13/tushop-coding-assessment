@@ -44,6 +44,26 @@ export const validateNumberLessThan100 = (parsedNumber: number): ValidationRespo
     return { isValid: true };
 };
 
+export const validateAgainstGoodies= (parsedNumber: number, goodies?:number): ValidationResponse => {
+    if (parsedNumber > goodies!) {
+        return {
+            isValid: false,
+            message: `⚠️ Please enter employee count that is not more than ${goodies}...`,
+        };
+    }
+    return { isValid: true };
+};
+
+export const validateNumberLessThan1 = (parsedNumber: number): ValidationResponse => {
+    if (parsedNumber < 1) {
+        return {
+            isValid: false,
+            message: '⚠️ Please enter a number more than 1...',
+        };
+    }
+    return { isValid: true };
+};
+
 export const validateProblemNumberRange = (parsedNumber: number): ValidationResponse => {
     if (parsedNumber !== 1 && parsedNumber !== 2) {
         return {

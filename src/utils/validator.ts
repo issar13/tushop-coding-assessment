@@ -1,4 +1,4 @@
-import { validateIsNumber, validateLength, validateNumberLessThan100, validatePartsLength, validatePositiveNumber, validateProblemNumberRange, validateTimeRange, validateTimesOrder } from "./helpers";
+import { validateAgainstGoodies, validateIsNumber, validateLength, validateNumberLessThan100, validatePartsLength, validatePositiveNumber, validateProblemNumberRange, validateTimeRange, validateTimesOrder } from "./helpers";
 import { ValidationResponse } from "./interface";
     
     
@@ -43,6 +43,24 @@ import { ValidationResponse } from "./interface";
         if (!ValidationResponse.isValid) return ValidationResponse;
     
         ValidationResponse = validateNumberLessThan100(parsedNumber);
+        if (!ValidationResponse.isValid) return ValidationResponse;
+    
+        return { isValid: true };
+    };
+
+    export const validateEmployeeCount = (employeeCount: string, goodiesLength?: number): ValidationResponse => {
+        const parsedNumber = parseInt(employeeCount);
+
+        let ValidationResponse = validateIsNumber(parsedNumber);
+        if (!ValidationResponse.isValid) return ValidationResponse;
+    
+        ValidationResponse = validatePositiveNumber(parsedNumber);
+        if (!ValidationResponse.isValid) return ValidationResponse;
+    
+        ValidationResponse = validateNumberLessThan100(parsedNumber);
+        if (!ValidationResponse.isValid) return ValidationResponse;
+
+        ValidationResponse = validateAgainstGoodies(parsedNumber, goodiesLength);
         if (!ValidationResponse.isValid) return ValidationResponse;
     
         return { isValid: true };

@@ -1,3 +1,4 @@
+import { getEmployeeNumber } from "../utils/input";
 import { Goodie, MinPriceDiff } from "../utils/interface";
 import * as fs from 'fs';
 
@@ -32,7 +33,6 @@ const calculateMinPriceDiff = (
 const solveProblem2 = async () => {
 	const fileList = fs.readFileSync(`src/problem2/files/sample.input.txt`, 'utf8');
 	const lines = fileList.split('\n');
-	const numberOfEmployees = parseInt(lines[0].split(':')[1]);
 
 	const goodies: Goodie[] = [];
 	for (let i = 2; i < lines.length; i++) {
@@ -40,6 +40,8 @@ const solveProblem2 = async () => {
 		const price = parseInt(priceString.trim(), 10);
 		goodies.push({ name: name.trim(), price });
 	}
+
+	const numberOfEmployees = await getEmployeeNumber(goodies.length)
 
 	const result = calculateMinPriceDiff(goodies, numberOfEmployees);
 	if(!result){
